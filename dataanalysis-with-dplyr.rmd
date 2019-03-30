@@ -1,0 +1,104 @@
+---
+title: "GPDI517: Introduction to dplyr"
+author: "by Tugba Ozturk"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+In this tutorial, we will use **mtcars** data frame to go over the following functions in `dplyr`:
+
+- select()
+- rename()
+- arrange()
+- mutate() and transmutate()
+- filter()
+- group_by() and summarise()
+
+
+## 1. Install and load the packge!
+
+Let us start by installing and loading the `dplyr` library. To do that, we need to uncomment the lines of code in the following code chunk and run the code: a) we can click on the **Knit** button to run the code and regenerate the document or b) we can click on the **Run Current Chunk** button on the top-right shown with a green arrow. 
+
+```{r install-load-dplyr}
+
+#install.packages("dplyr") #to install the library from the CRAN
+#library("dplyr") #to activate/load the library on your workspace, every time you start a new session in R, you should use this command to load the dplyr library!
+
+```
+
+## 2. Get familiar with the data set -- mtcars.
+
+Using `knitr::kable()`, we can generate a table to look at the first 10 lines of the **mtcars** data set. If we wish to see the whole data, we can replace **head(mtcars,10)** with **mtcars** below and **knit** the document: 
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(mtcars, 10))
+```
+
+It is a good idea to look at the summary of a data frame:
+
+```{r summary, echo=FALSE }
+if (sum(is.na(mtcars))==0) {
+  cat("\nThere is",sum(is.na(mtcars)), "missing data points in this data frame!\n\n")
+} else {
+  cat("\nNo missing data points!\n")
+}
+
+print(summary(mtcars))
+
+```
+
+
+## 3. Data manipulation with **dplyr**
+
+Write an R script (named **myanswer.R**) to do the following:
+
+- create a local copy of **mtcars**
+- select the following columns: mpg, cyl, disp, hp, drat, wt 
+- arrange the data frame by the disp column in the descending order
+- create a new column which is equal to mpg*cyl/wt and name it x
+- group the data by cyl, calculate the average, standard deviation of disp column
+and the number of columns, write the output as *dplyr-exercise-disp.txt*
+- add a new column which is the copy of cyl column where 4,6, and 8 are represented as "A","B", and "C", respectively
+- rename x column as mcw
+- create a new data frame with all the rows having a value between 3 and 100 in the disp column and save the new data frame as *dplyr-exercise.out* (white space separated, without quotation marks)
+
+
+```{r dplyrexercise }
+# let's run the script by umcommenting the following line and running the current
+# chunk: 
+#source("myanswer.R")
+
+```
+
+
+## 4. **%>%** operator makes it more readable!
+
+Now, copy the content of your script below and rewrite it using the pipe operator (**%>%**):
+
+
+```{r dplyrexercisewithpipe }
+
+
+```
+
+
+
+## 5. Bonus!
+
+Add your comments to the following code:
+
+```{r twotable }
+#df <- data.frame(cyl=c(4,6,8),legend=c("four", "six","eight"))
+#a <- left_join(mtcars,df)
+```
+
+
+
+
+
